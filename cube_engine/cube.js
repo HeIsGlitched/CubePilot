@@ -94,13 +94,198 @@ function moveF2(cube) {
     moveF(cube);
 }
 
+function moveR(cube){
+    cube.R = rotateFaceCW(cube.R);
+    const F = [...cube.F];
+    const U = [...cube.U];
+    const B = [...cube.B];
+    const D = [...cube.D];
+
+    cube.U[2] = F[2];
+    cube.U[5] = F[5];
+    cube.U[8] = F[8];
+
+    cube.B[0] = U[2];
+    cube.B[3] = U[5];
+    cube.B[6] = U[8];
+
+    cube.D[2] = B[0];
+    cube.D[5] = B[3];
+    cube.D[8] = B[6];
+
+    cube.F[2] = D[2];
+    cube.F[5] = D[5];
+    cube.F[8] = D[8];
+}
+
+function moveRPrime(cube){
+    moveR(cube);
+    moveR(cube);
+    moveR(cube);
+}
+
+function moveR2(cube){
+    moveR(cube);
+    moveR(cube);
+}
+
+function moveU(cube){
+    cube.U = rotateFaceCW(cube.U);
+    const F = [...cube.F];
+    const L = [...cube.L];
+    const B = [...cube.B];
+    const R = [...cube.R];
+
+    cube.L[0] = F[0];
+    cube.L[1] = F[1];
+    cube.L[2] = F[2];
+
+    cube.B[0] = L[0];
+    cube.B[1] = L[1];
+    cube.B[2] = L[2];
+
+    cube.R[0] = B[0];
+    cube.R[1] = B[1];
+    cube.R[2] = B[2];
+
+    cube.F[0] = R[0];
+    cube.F[1] = R[1];
+    cube.F[2] = R[2];
+}
+
+function moveUPrime(cube){
+    moveU(cube);
+    moveU(cube);
+    moveU(cube);
+}
+
+function moveU2(cube){
+    moveU(cube);
+    moveU(cube);
+}
+
+function moveD(cube){
+    cube.D = rotateFaceCW(cube.D);
+    const F = [...cube.F];
+    const L = [...cube.L];
+    const B = [...cube.B];
+    const R = [...cube.R];
+
+    cube.R[6] = F[6];
+    cube.R[7] = F[7];
+    cube.R[8] = F[8];
+
+    cube.F[6] = L[6];
+    cube.F[7] = L[7];
+    cube.F[8] = L[8];
+
+    cube.L[6] = B[6];
+    cube.L[7] = B[7];
+    cube.L[8] = B[8];
+
+    cube.B[6] = R[6];
+    cube.B[7] = R[7];
+    cube.B[8] = R[8];
+}
+
+function moveDPrime(cube){
+    moveD(cube);
+    moveD(cube);
+    moveD(cube);
+}
+
+function moveD2(cube){
+    moveD(cube);
+    moveD(cube);
+}
+
+function moveB(cube){
+    cube.B = rotateFaceCW(cube.B);
+    const D = [...cube.D];
+    const L = [...cube.L];
+    const U = [...cube.U];
+    const R = [...cube.R];
+
+    cube.L[0] = U[2];
+    cube.L[3] = U[1];
+    cube.L[6] = U[0];
+
+    cube.U[2] = R[2];
+    cube.U[1] = R[5];
+    cube.U[0] = R[8];
+
+    cube.R[2] = D[2];
+    cube.R[5] = D[1];
+    cube.R[8] = D[0];
+
+    cube.D[2] = L[0];
+    cube.D[1] = L[3];
+    cube.D[0] = L[6];
+
+}
+
+function moveBPrime(cube){
+    moveB(cube);
+    moveB(cube);
+    moveB(cube);
+}
+
+function moveB2(cube){
+    moveB(cube);
+    moveB(cube);
+}
+
+function moveL(cube){
+    cube.L = rotateFaceCW(cube.L);
+    const D = [...cube.D];
+    const F = [...cube.F];
+    const U = [...cube.U];
+    const B = [...cube.B];
+
+    cube.F[0] = U[0];
+    cube.F[3] = U[3];
+    cube.F[6] = U[6];
+
+    cube.D[0] = F[6];
+    cube.D[3] = F[3];
+    cube.D[6] = F[0];
+
+    cube.B[2] = D[0];
+    cube.B[5] = D[3];
+    cube.B[8] = D[6];
+
+    cube.U[0] = B[8];
+    cube.U[3] = B[5];
+    cube.U[6] = B[2];
+}
+
+function moveLPrime(cube){
+    moveL(cube);
+    moveL(cube);
+    moveL(cube);
+}
+
+function moveL2(cube){
+    moveL(cube);
+    moveL(cube);
+}
+
+console.log("Original:");
+console.log(testCube);
 
 moveF(testCube);
+moveR(testCube);
+moveU(testCube);
+moveL(testCube);
+moveB(testCube);
+moveD(testCube);
+
+moveDPrime(testCube);
+moveBPrime(testCube);
+moveLPrime(testCube);
+moveUPrime(testCube);
+moveRPrime(testCube);
 moveFPrime(testCube);
-moveF2(testCube);
-moveF2(testCube);
-console.log("U:", testCube.U);
-console.log("R:", testCube.R);
-console.log("D:", testCube.D);
-console.log("L:", testCube.L);
-console.log("F:", testCube.F);
+
+console.log("After moves + inverse moves:");
+console.log(testCube);
