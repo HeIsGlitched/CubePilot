@@ -270,6 +270,87 @@ function moveL2(cube){
     moveL(cube);
 }
 
+function applyMoves(cube, moves) {
+    for(let move of moves){
+        switch (move) {
+            case "F":
+                moveF(cube);
+                break;
+    
+            case "F'":
+                moveFPrime(cube);
+                break;
+    
+            case "F2":
+                moveF2(cube);
+                break;
+    
+            case "R":
+                moveR(cube);
+                break;
+    
+            case "R'":
+                moveRPrime(cube);
+                break;
+    
+            case "R2":
+                moveR2(cube);
+                break;
+    
+            case "U":
+                moveU(cube);
+                break;
+    
+            case "U'":
+                moveUPrime(cube);
+                break;
+    
+            case "U2":
+                moveU2(cube);
+                break;
+    
+            case "D":
+                moveD(cube);
+                break;
+    
+            case "D'":
+                moveDPrime(cube);
+                break;
+    
+            case "D2":
+                moveD2(cube);
+                break;
+    
+            case "L":
+                moveL(cube);
+                break;
+    
+            case "L'":
+                moveLPrime(cube);
+                break;
+    
+            case "L2":
+                moveL2(cube);
+                break;
+    
+            case "B":
+                moveB(cube);
+                break;
+    
+            case "B'":
+                moveBPrime(cube);
+                break;
+    
+            case "B2":
+                moveB2(cube);
+                break;
+    
+            default:
+                console.log("Invalid move:", move);
+        }
+    }
+}
+
 console.log("Original:");
 console.log(testCube);
 
