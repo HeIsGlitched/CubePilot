@@ -351,22 +351,37 @@ function applyMoves(cube, moves) {
     }
 }
 
-console.log("Original:");
-console.log(testCube);
+const moves = [
+    "F", "F'", "F2",
+    "R", "R'", "R2",
+    "U", "U'", "U2",
+    "D", "D'", "D2",
+    "L", "L'", "L2",
+    "B", "B'", "B2"
+];
 
-moveF(testCube);
-moveR(testCube);
-moveU(testCube);
-moveL(testCube);
-moveB(testCube);
-moveD(testCube);
+function scrambler(length){
+    const scramble = [];
+    for(let i=0; i<length; i++){
+        let randomMove = moves[Math.floor(Math.random()*moves.length)];
+        while(i>0 && scramble[i-1][0] === randomMove[0]){
+            randomMove = moves[Math.floor(Math.random()*moves.length)];
+        }
+        scramble[i] = randomMove;
+    }
+    return scramble;
+}
 
-moveDPrime(testCube);
-moveBPrime(testCube);
-moveLPrime(testCube);
-moveUPrime(testCube);
-moveRPrime(testCube);
-moveFPrime(testCube);
+function isSolved(cube) {
+    return Object.values(cube).every(face =>
+        face.every(sticker => face[4] === sticker)
+    );
+}
 
-console.log("After moves + inverse moves:");
-console.log(testCube);
+console.log(isSolved(cube));
+const scrambledCube = scrambler(20);
+console.log(scrambledCube);
+applyMoves(cube, scrambledCube);
+console.log(cube);
+console.log(isSolved(cube));
+
