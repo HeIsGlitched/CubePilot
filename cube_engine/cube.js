@@ -378,10 +378,47 @@ function isSolved(cube) {
     );
 }
 
-console.log(isSolved(cube));
-const scrambledCube = scrambler(20);
-console.log(scrambledCube);
-applyMoves(cube, scrambledCube);
-console.log(cube);
-console.log(isSolved(cube));
+const edges = {
+    UF: [ ["U", 7], ["F", 1] ],
+    UR: [ ["U", 5], ["R", 1] ],
+    UB: [ ["U", 1], ["B", 1] ],
+    UL: [ ["U", 3], ["L", 1] ],
 
+    DF: [ ["D", 1], ["F", 7] ],
+    DR: [ ["D", 5], ["R", 7] ],
+    DB: [ ["D", 7], ["B", 7] ],
+    DL: [ ["D", 3], ["L", 7] ],
+
+    FR: [ ["F", 5], ["R", 3] ],
+    FL: [ ["F", 3], ["L", 5] ],
+    BR: [ ["B", 3], ["R", 5] ],
+    BL: [ ["B", 5], ["L", 3] ]
+};
+
+function findEdge(cube, color1, color2){
+    for(const edgeName in edges){
+        const position = edges[edgeName];
+
+        const face1 = position[0][0];
+        const index1 = position[0][1];
+
+        const face2 = position[1][0];
+        const index2 = position[1][1];
+
+        const sticker1 = cube[face1][index1];
+        const sticker2 = cube[face2][index2];
+
+        if (
+            (sticker1 === color1 && sticker2 === color2) ||
+            (sticker1 === color2 && sticker2 === color1)
+        ) {
+            return edgeName;
+        }
+    }
+    return null;
+}
+
+console.log(findEdge(cube, "W", "G"));
+console.log(findEdge(cube, "W", "R"));
+console.log(findEdge(cube, "W", "B"));
+console.log(findEdge(cube, "W", "O"));
