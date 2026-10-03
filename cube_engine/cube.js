@@ -418,7 +418,39 @@ function findEdge(cube, color1, color2){
     return null;
 }
 
+const scramble = [
+    "F",
+    "R",
+    "U",
+    "L"
+];
+
+function whiteEdgeOrientation(cube, color1, color2) {
+    const position = findEdge(cube, color1, color2);
+
+    const positions = edges[position];
+
+    const face1 = positions[0][0];
+    const index1 = positions[0][1];
+
+    const face2 = positions[1][0];
+    const index2 = positions[1][1];
+
+    const sticker1 = cube[face1][index1];
+    const sticker2 = cube[face2][index2];
+
+    if (sticker1 === "W") {
+        return face1;
+    }
+
+    if (sticker2 === "W") {
+        return face2;
+    }
+}
+applyMoves(cube, scramble);
+moveF(cube);
+moveR(cube);
+moveU(cube);
 console.log(findEdge(cube, "W", "G"));
-console.log(findEdge(cube, "W", "R"));
-console.log(findEdge(cube, "W", "B"));
-console.log(findEdge(cube, "W", "O"));
+console.log(whiteEdgeOrientation(cube, "W", "G"));
+
